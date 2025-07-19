@@ -1,0 +1,9 @@
+#Folders
+node_modules
+Build
+
+#Typescript files
+tsconfig.tsbuildinfo
+
+# Editor directories and files
+.vscode/*
