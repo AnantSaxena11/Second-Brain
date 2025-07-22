@@ -1,6 +1,6 @@
-import {Router} from "express"
+// import {Router} from "express"
 
-export const brainRoutes : Router = Router();
+// export const brainRoutes : Router = Router();
 
-brainRoutes.post('/share',publicLink);
-brainRoutes.get('/shareLink',othersBrain);
+// brainRoutes.post('/share',publicLink);
+// brainRoutes.get('/shareLink',othersBrain);

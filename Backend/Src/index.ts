@@ -1,32 +1,31 @@
 import express from "express";
 import dotenv from "dotenv";
 import { Connection } from "./Config/DBConnection";
-import { contentRoutes } from "./Routes/contentRoutes";
 import { authRoutes } from "./Routes/authRoutes";
-import { brainRoutes } from "./Routes/brainRoutes";
+
 dotenv.config();
 
-const port = process.env.PORT;
-
+const port = parseInt(process.env.PORT || "5000", 10);
 const app = express();
 
 app.use(express.json());
 
-//Define all your Routes
+app.get("/", (_req, res) => {
+    res.send("API is running...");
+});
 
-app.use('/api/v1',authRoutes);
-app.use('/api/v1/content',contentRoutes);
-app.use('/api/v1/brain',brainRoutes);
+app.use("/api/v1", authRoutes);
 
 const StartServer = async (): Promise<void> => {
     try {
-        await Connection()
-        console.log("The Connection was established successfully")
-        app.listen(port, (): void => {
-            console.log(`The server is running at the port ${port}`)
-        })
+        await Connection();
+        console.log("Database connection established.");
+        app.listen(port, () => {
+            console.log(`Server running on port ${port}`);
+        });
     } catch (error) {
-        console.error(error)
+        console.error("Failed to start server:", error);
     }
-}
-StartServer()
+};
+
+StartServer();
