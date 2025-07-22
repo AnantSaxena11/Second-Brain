@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-import { Connection } from "./Config/DBConnection";
-import { authRoutes } from "./Routes/authRoutes";
+// import { Connection } from "./Config/DBConnection";
+// import { authRoutes } from "./Routes/authRoutes";
 
 dotenv.config();
 
@@ -14,11 +14,15 @@ app.get("/", (_req, res) => {
     res.send("API is running...");
 });
 
-app.use("/api/v1", authRoutes);
+app.get('/api/v1/test', (req, res) => {
+    console.log("✅ /test route hit");
+    res.send("Test route is working");
+});
+// app.use("/api/v1", authRoutes);
 
 const StartServer = async (): Promise<void> => {
     try {
-        await Connection();
+        // await Connection();
         console.log("Database connection established.");
         app.listen(port, () => {
             console.log(`Server running on port ${port}`);
